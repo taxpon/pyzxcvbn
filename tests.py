@@ -992,5 +992,11 @@ class TestMatchingFunctions(unittest.TestCase):
         )
 
 
+def suite():
+    test_suite = unittest.TestSuite()
+    test_suite.addTests(unittest.makeSuite(TestMatchingFunctions))
+    test_suite.addTests(unittest.makeSuite(TestScoringFunctions))
+    return test_suite
+
 if __name__ == "__main__":
     unittest.main()
