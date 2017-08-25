@@ -401,6 +401,8 @@ class TestMatchingFunctions(unittest.TestCase):
         return result
 
     def check_matches(self, prefix, matches, pattern_names, patterns, ijs, props):
+        matches = list(matches)
+        patterns = list(patterns)
         if isinstance(pattern_names, six.string_types):
             pattern_names = [pattern_names for _ in range(len(patterns))]
 
