@@ -590,7 +590,7 @@ def date_match(password):
                 break
         return not is_submatch
 
-    return sorted(filter(del_submatch, matches))
+    return sorted(filter(del_submatch, matches), key=lambda d: tuple(d[k] for k in sorted(d)))
 
 
 def map_ints_to_dmy(int_list):
