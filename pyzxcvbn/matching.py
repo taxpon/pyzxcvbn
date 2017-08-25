@@ -2,9 +2,9 @@
 import re
 import math
 
-import scoring
-from adjacency_graphs import adjacency_graphs
-from frequency_lists import frequency_lists
+from pyzxcvbn import scoring
+from .adjacency_graphs import adjacency_graphs
+from .frequency_lists import frequency_lists
 
 
 def build_ranked_dict(ordered_list):
