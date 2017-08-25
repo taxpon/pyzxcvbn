@@ -10,4 +10,4 @@ script:
   - python setup.py test
 
 install:
-  - "pip install -e ."
+  - "pip install six"
