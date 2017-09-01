@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import absolute_import
 import math
+import six
 import unittest
 
 from pyzxcvbn import scoring
@@ -400,7 +401,9 @@ class TestMatchingFunctions(unittest.TestCase):
         return result
 
     def check_matches(self, prefix, matches, pattern_names, patterns, ijs, props):
-        if isinstance(pattern_names, (str, unicode)):
+        matches = list(matches)
+        patterns = list(patterns)
+        if isinstance(pattern_names, six.string_types):
             pattern_names = [pattern_names for _ in range(len(patterns))]
 
         # Length check
@@ -435,7 +438,7 @@ class TestMatchingFunctions(unittest.TestCase):
             # Property check
             for prop_name, prop_list in props.items():
                 prop_msg = prop_list[k]
-                if isinstance(prop_msg, (str, unicode)):
+                if isinstance(prop_msg, six.string_types):
                     prop_msg = "'{}'".format(prop_msg)
                 msg = "{}: matches[{}].{}({}) == {}".format(prefix, k, prop_name, match[prop_name], prop_msg)
                 self.assertEqual(match[prop_name], prop_list[k], msg=msg)

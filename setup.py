@@ -33,5 +33,8 @@ Install
         'License :: OSI Approved :: MIT License',
         "Programming Language :: Python",
     ],
-    test_suite='tests.suite'
+    test_suite='tests.suite',
+    install_requires=[
+        'six',
+    ],
 )

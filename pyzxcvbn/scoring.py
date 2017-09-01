@@ -1,8 +1,11 @@
+from __future__ import absolute_import
+from __future__ import print_function
 import math
 import re
 from decimal import Decimal
 
-from adjacency_graphs import adjacency_graphs
+from .adjacency_graphs import adjacency_graphs
+from six.moves import range
 
 # on qwerty, 'g' has degree 6, being adjacent to 'ftyhbv'. '\' has degree 1.
 # this calculates the average over all keys.
@@ -230,7 +233,7 @@ def estimate_guesses(match, password):
     }
     guesses = estimation_functions[match["pattern"]](match)
     if not isinstance(guesses, (int, float)):
-        print "hoge"
+        print("hoge")
     match["guesses"] = max(guesses, min_guesses)
     match["guesses_log10"] = log10(match["guesses"])
     return match["guesses"]

@@ -1,10 +1,13 @@
 # -*- coding: utf-8 -*-
+from __future__ import absolute_import
 import re
 import math
 
-import scoring
-from adjacency_graphs import adjacency_graphs
-from frequency_lists import frequency_lists
+from pyzxcvbn import scoring
+from .adjacency_graphs import adjacency_graphs
+from .frequency_lists import frequency_lists
+from six.moves import filter
+from six.moves import range
 
 
 def build_ranked_dict(ordered_list):
@@ -164,8 +167,8 @@ def dictionary_match(password, _ranked_dictionaries=RANKED_DICTIONARIES):
     password_lower = password.lower()
 
     for dictionary_name, ranked_dict in _ranked_dictionaries.items():
-        for i in xrange(length):
-            for j in xrange(length):
+        for i in range(length):
+            for j in range(length):
                 token = password_lower[i:j+1]
                 if token in ranked_dict:
                     word = token
@@ -302,7 +305,7 @@ def l33t_match(password, _ranked_dictionaries=RANKED_DICTIONARIES, _l33t_table=L
             match["sub"] = match_sub
             match["sub_display"] = ", ".join(["{} -> {}".format(k, v) for k, v in match_sub.items()])
             matches.append(match)
-    return sorted(filter(lambda m: len(m["token"]) > 1, matches), key=lambda x: (x['i'], x['j']))
+    return sorted([m for m in matches if len(m["token"]) > 1], key=lambda x: (x['i'], x['j']))
 
 
 # #########################################################
@@ -488,8 +491,7 @@ def regex_match(password, _regexen=REGEXEN):
         precedence_map[key] = precedence
 
     return sorted(
-        filter(lambda m:
-               precedence_map[get_key(m)] == REGEX_PRECEDENCE[m["regex_name"]], matches),
+        [m for m in matches if precedence_map[get_key(m)] == REGEX_PRECEDENCE[m["regex_name"]]],
         key=lambda x: (x["i"], x["j"])
     )
 
@@ -588,7 +590,7 @@ def date_match(password):
                 break
         return not is_submatch
 
-    return sorted(filter(del_submatch, matches))
+    return sorted(filter(del_submatch, matches), key=lambda d: tuple(d[k] for k in sorted(d)))
 
 
 def map_ints_to_dmy(int_list):
