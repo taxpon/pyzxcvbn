@@ -1,15 +1,16 @@
 [![Build Status](https://travis-ci.org/taxpon/pyzxcvbn.svg?branch=master)](https://travis-ci.org/taxpon/pyzxcvbn)
-
+![Python2](https://img.shields.io/badge/python-2-blue.svg)
+![Python3](https://img.shields.io/badge/python-3-blue.svg)
 # pyzxcvb
-Python version [zxcvbn](https://github.com/dropbox/zxcvbn). There are the same test scripts (but written in not coffee script but python) as the original repository in order to ensure this library will move in the same way.
+Python version [zxcvbn](https://github.com/dropbox/zxcvbn). There are the same test scripts (but written in not coffee script but python) as the original repository in order to ensure this library will move in the same way. Supoprts Python2 (2.7) and Python3 (3.4+).
 
 # Install
-```
+```bash
 pip install pyzxcvbn
 ```
 
 # Usage
-```
+```python
 from pyzxcvbn import zxcvbn
 result = zxcvbn('foobar')
 ```
